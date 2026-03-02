@@ -15,12 +15,12 @@
 
 #pragma once
 
-#include "elf_cache.h"
-#include "elf.h"
-#include "pkg.h"
-#include "utility.h"
+#include "revdep/elf_cache.h"
+#include "revdep/elf.h"
+#include "revdep/pkg.h"
+#include "revdep/utility.h"
 
-#include "revdep_context.h"
-#include "revdep_engine.h"
-#include "revdep_parallel.h"
-#include "revdep_format.h"
+#include "revdep/revdep_context.h"
+#include "revdep/revdep_engine.h"
+#include "revdep/revdep_parallel.h"
+#include "revdep/revdep_format.h"
