@@ -1,5 +1,5 @@
 # project metadata
-NAME        = revdep
+NAME        = librevdep
 VERSION     = 5.0
 
 # paths
