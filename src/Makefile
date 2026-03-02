@@ -1,53 +1,29 @@
 .POSIX:
 .SUFFIXES: .cpp .o
 
-include ../../config.mk
-#include ../../extra/flags-extra.mk
-#include ../../extra/flags-sanitizer.mk
+include ../config.mk
+#include ../extra/flags-extra.mk
+#include ../extra/flags-sanitizer.mk
 
-LIB_NAME = librevdep.a
+LIB = $(NAME).a
+OBJ = elf_cache.o elf.o pkg.o utility.o revdep_engine.o revdep_parallel.o revdep_format.o
 
-LIB_SRC = \
-	elf_cache.cpp \
-	elf.cpp \
-	pkg.cpp \
-	utility.cpp \
-	revdep_engine.cpp \
-	revdep_parallel.cpp \
-	revdep_format.cpp
-
-LIB_HDR = \
-	elf_cache.h \
-	elf.h \
-	pkg.h \
-	utility.h \
-	revdep_context.h \
-	revdep_engine.h \
-	revdep_parallel.h \
-	revdep_format.h \
-	librevdep.h
-
-LIB_OBJ = $(LIB_SRC:.cpp=.o)
+all: $(LIB)
 
 .cpp.o:
-	$(CXX) -c $< $(CPPFLAGS) $(CXXFLAGS)
+	$(CXX) -c $< $(CPPFLAGS) $(CXXFLAGS) -I../include
 
-all: $(LIB_NAME)
-
-$(LIB_NAME): $(LIB_OBJ)
-	ar rcs $@ $^
+$(LIB): $(OBJ)
+	$(AR) $(ARFLAGS) $@ $^
 
 install: all
 	mkdir -p $(DESTDIR)$(PREFIX)/lib
-	mkdir -p $(DESTDIR)$(PREFIX)/include/librevdep
-	cp -f $(LIB_NAME) $(DESTDIR)$(PREFIX)/lib
-	cp -f $(LIB_HDR) $(DESTDIR)$(PREFIX)/include/librevdep
+	cp -f $(LIB) $(DESTDIR)$(PREFIX)/lib
 
 uninstall:
-	cd $(DESTDIR)$(PREFIX)/lib && rm -f $(LIB_NAME)
-	cd $(DESTDIR)$(PREFIX)/include/librevdep && rm -f $(LIB_HDR)
+	cd $(DESTDIR)$(PREFIX)/lib && rm -f $(LIB)
 
 clean:
-	rm -f $(LIB_OBJ) $(LIB_NAME)
+	rm -f $(OBJ) $(LIB)
 
 .PHONY: all install uninstall clean

@@ -1,18 +1,28 @@
-# project metadata
+# =================================================================
+# Project metadata
+# =================================================================
 NAME        = librevdep
 VERSION     = 5.0
 
-# paths
+# =================================================================
+# Installation paths
+# =================================================================
 PREFIX      = /usr
 MANPREFIX   = $(PREFIX)/share/man
-BASHCOMPDIR = $(PREFIX)/share/bash-completion/completions
+PKGCONFDIR  = $(PREFIX)/lib/pkgconfig
 
-# flags
+# =================================================================
+# Compiler and archiver flags
+# =================================================================
 CPPFLAGS    = -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 \
               -DVERSION=\"$(VERSION)\"
 CXXFLAGS    = -std=c++17 -pedantic -Wall -Wextra
 LDFLAGS     = -lelf
+ARFLAGS     = rcs
 
-# compiler and linker
+# =================================================================
+# Toolchain
+# =================================================================
 CXX         = c++
+AR          = ar
 LD          = $(CXX)
