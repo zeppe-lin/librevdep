@@ -16,7 +16,7 @@
 #include <gelf.h>    // For GELF (Generic ELF) library functions
 #include <unistd.h>  // For close()
 
-#include "elf.h"
+#include "revdep/elf.h"
 
 using namespace std;
 

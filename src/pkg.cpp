@@ -15,7 +15,7 @@
 
 #include <dirent.h>   // For DIR, opendir, readdir, closedir
 
-#include "pkg.h"
+#include "revdep/pkg.h"
 
 using namespace std;
 

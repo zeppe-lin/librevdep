@@ -8,9 +8,9 @@
  * \copyright See COPYING for license terms and COPYRIGHT for notices.
  */
 
-#include "revdep_format.h"
-
 #include <sstream>
+
+#include "revdep/revdep_format.h"
 
 namespace revdep {
 

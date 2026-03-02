@@ -9,9 +9,8 @@
  * \copyright See COPYING for license terms and COPYRIGHT for notices.
  */
 
-#include "revdep_engine.h"
-
-#include "utility.h"
+#include "revdep/revdep_engine.h"
+#include "revdep/utility.h"
 
 namespace revdep {
 

@@ -14,7 +14,7 @@
 #include <glob.h>
 #include <sys/stat.h>
 
-#include "utility.h"
+#include "revdep/utility.h"
 
 using namespace std;
 

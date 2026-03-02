@@ -8,11 +8,11 @@
  * \copyright See COPYING for license terms and COPYRIGHT for notices.
  */
 
-#include "revdep_parallel.h"
-
 #include <atomic>
 #include <mutex>
 #include <thread>
+
+#include "revdep/revdep_parallel.h"
 
 namespace revdep {
 
