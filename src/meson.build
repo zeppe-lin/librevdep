@@ -15,7 +15,7 @@ librevdep = library(
   dependencies: [libelf_dep],
   install: true,
   version: meson.project_version(),
-  soversion: '1',
+  soversion: '5',
 )
 
 install_headers(
