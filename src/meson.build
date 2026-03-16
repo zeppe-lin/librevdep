@@ -28,6 +28,7 @@ install_headers(
   '../include/librevdep/revdep_format.h',
   '../include/librevdep/revdep_parallel.h',
   '../include/librevdep/utility.h',
+  subdir: 'librevdep',
 )
 
 pkgconf.generate(
