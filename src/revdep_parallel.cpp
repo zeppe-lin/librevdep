@@ -12,7 +12,7 @@
 #include <mutex>
 #include <thread>
 
-#include "revdep/revdep_parallel.h"
+#include "librevdep/revdep_parallel.h"
 
 namespace revdep {
 

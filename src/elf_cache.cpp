@@ -16,8 +16,8 @@
 
 #include <sys/auxv.h>  // For getauxval(), AT_PLATFORM
 
-#include "revdep/elf_cache.h"
-#include "revdep/utility.h"
+#include "librevdep/elf_cache.h"
+#include "librevdep/utility.h"
 
 /*!
  * \brief Return parent directory of \p p (like dirname(3), but

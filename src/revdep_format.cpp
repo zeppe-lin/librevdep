@@ -10,7 +10,7 @@
 
 #include <sstream>
 
-#include "revdep/revdep_format.h"
+#include "librevdep/revdep_format.h"
 
 namespace revdep {
 
