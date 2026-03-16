@@ -40,28 +40,27 @@ jobs:
           - name: default
             build_man: true
 
-  name: ${{ matrix.env.name }} / ${{ matrix.cfg.name }}
-  container: ${{ matrix.env.container != '' && matrix.env.container || null }}
+    name: ${{ matrix.env.name }} / ${{ matrix.cfg.name }}
+    container: ${{ matrix.env.container != '' && matrix.env.container || null }}
 
-  steps:
-    - uses: actions/checkout@v5
+    steps:
+      - uses: actions/checkout@v5
 
-    - name: Install build dependencies
-      run: ${{ matrix.env.install }}
+      - name: Install build dependencies
+        run: ${{ matrix.env.install }}
 
-    - name: Configure
-      run: |
-        meson setup build \
-          --buildtype=plain \
-          --wrap-mode=nodownload \
-          -D b_lto=false \
-          -D b_pie=true \
-          -D build_man=${{ matrix.cfg.build_man }}
+      - name: Configure
+        run: |
+          meson setup build \
+            --buildtype=plain \
+            --wrap-mode=nodownload \
+            -D b_lto=false \
+            -D b_pie=true \
+            -D build_man=${{ matrix.cfg.build_man }}
 
-    - name: Compile
-      run: meson compile -C build -v
+      - name: Compile
+        run: meson compile -C build -v
 
-    - name: Install to staging
-      run: |
-        DESTDIR="$PWD/stage" meson install -C build
-
+      - name: Install to staging
+        run: |
+          DESTDIR="$PWD/stage" meson install -C build
