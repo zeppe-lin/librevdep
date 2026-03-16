@@ -1,9 +1,0 @@
-prefix=@PREFIX@
-includedir=${prefix}/include
-libdir=${prefix}/lib
-
-Name: librevdep
-Description: Reverse dependency auditing library
-Version: @VERSION@
-Libs: -L${libdir} -lrevdep -lelf
-Cflags: -I${includedir} -I${includedir}/revdep
