@@ -4,48 +4,64 @@ on:
   push:
     branches: [ "master" ]
     paths: &paths
-      - ".github/**"
+      - "meson.build"
+      - "meson.options"
+      - "meson_options.txt"
+      - "include/**"
       - "src/**"
-      - "config.mk"
-      - "Makefile"
+      - "man/**"
+      - ".github/**"
 
   pull_request:
     branches: [ "master" ]
     paths: *paths
 
 jobs:
-  build-man:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+    strategy:
+      fail-fast: false
+      matrix:
+        env:
+          - name: glibc
+            container: ""
+            install: |
+              sudo apt-get update
+              sudo apt-get install -y \
+                meson ninja-build pkg-config g++ \
+                scdoc libelf-dev
+          - name: musl
+            container: "alpine:latest"
+            install: |
+              apk add --no-cache \
+                build-base meson ninja pkgconf \
+                scdoc elfutils-dev
+        cfg:
+          - name: default
+            build_man: true
 
-      - name: Install scdoc
-        run: sudo apt-get install -y scdoc
+  name: ${{ matrix.env.name }} / ${{ matrix.cfg.name }}
+  container: ${{ matrix.env.container != '' && matrix.env.container || null }}
 
-      - name: Generate man pages
-        run: make -C man
+  steps:
+    - uses: actions/checkout@v5
 
-  build-glibc:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+    - name: Install build dependencies
+      run: ${{ matrix.env.install }}
 
-      - name: Install build dependencies
-        run: sudo apt-get install -y libelf-dev
+    - name: Configure
+      run: |
+        meson setup build \
+          --buildtype=plain \
+          --wrap-mode=nodownload \
+          -D b_lto=false \
+          -D b_pie=true \
+          -D build_man=${{ matrix.cfg.build_man }}
 
-      - name: Build (glibc)
-        run: make -C src
+    - name: Compile
+      run: meson compile -C build -v
 
-  build-musl:
-    runs-on: ubuntu-latest
-    container: alpine:latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install build dependencies
-        run: apk add build-base g++ make elfutils-dev
-
-      - name: Build (musl)
-        run: make -C src
+    - name: Install to staging
+      run: |
+        DESTDIR="$PWD/stage" meson install -C build
 
