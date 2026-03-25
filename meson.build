@@ -1,7 +1,7 @@
 project(
   'librevdep',
   'cpp',
-  version: '5.1.1',
+  version: '5.1.2',
   meson_version: '>=1.2.0',
   default_options: [
     'cpp_std=c++17',
