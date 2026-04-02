@@ -21,7 +21,7 @@ librevdep = library(
 librevdep_dep = declare_dependency(
   link_with: librevdep,
   include_directories: public_inc,
-  dependencies: [libelf],
+  dependencies: [libelf_dep],
 )
 
 meson.override_dependency('librevdep', librevdep_dep)
