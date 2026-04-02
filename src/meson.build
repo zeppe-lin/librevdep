@@ -18,6 +18,14 @@ librevdep = library(
   soversion: '5',
 )
 
+librevdep_dep = declare_dependency(
+  link_with: librevdep,
+  include_directories: public_inc,
+  dependencies: [libelf],
+)
+
+meson.override_dependency('librevdep', librevdep_dep)
+
 install_headers(
   '../include/librevdep/elf_cache.h',
   '../include/librevdep/elf.h',
