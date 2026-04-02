@@ -11,7 +11,12 @@ project(
   ],
 )
 
-libelf_dep = dependency('libelf', required: true)
+libelf_dep = dependency(
+  'libelf',
+  required: true,
+  static: get_option('prefer_static_deps'),
+)
+
 pkgconf = import('pkgconfig')
 
 subdir('src')
