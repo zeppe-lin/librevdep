@@ -153,7 +153,8 @@ Build-time
 - Meson
 - Ninja
 - `elfutils` (`libelf`)
-- `scdoc(1)` to generate manual pages (if manpage build is enabled)
+- `scdoc(1)` to generate manual pages
+  (enabled by default via the `manpages` option)
 - `pkg-config(1)` for dependency discovery
 
 Runtime
@@ -193,8 +194,8 @@ Common options:
 ```sh
 meson setup build \
     --prefix=/usr \
-    -D build_man=true \
-    -D b_lto=false
+    -D b_lto=false \
+    -D manpages=true \
 ```
 
 Use `meson configure build` to inspect available options.
