@@ -8,7 +8,6 @@ project(
     'warning_level=3',
     'default_library=shared',
     'b_ndebug=if-release',
-    'b_lto=false',
   ],
 )
 
