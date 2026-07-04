@@ -29,13 +29,13 @@ jobs:
               sudo apt-get update
               sudo apt-get install -y \
                 meson ninja-build pkg-config g++ \
-                scdoc libelf-dev
+                scdoc libelf-dev libzstd-dev libz-dev
           - name: musl
             container: "alpine:latest"
             install: |
               apk add --no-cache \
                 build-base meson ninja pkgconf \
-                scdoc elfutils-dev
+                scdoc elfutils-dev zlib-static zstd-static
         cfg:
           - name: shared
             link_mode: shared
