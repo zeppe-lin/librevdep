@@ -15,7 +15,6 @@ project(
 
 want_static = get_option('link_mode') == 'static'
 if want_static
-  add_project_link_arguments('-static', language: 'cpp')
   add_project_link_arguments('-no-pie', language: 'cpp')
 endif
 
