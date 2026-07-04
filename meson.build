@@ -11,10 +11,12 @@ project(
   ],
 )
 
+want_static = get_option('link_mode') == 'static'
+
 libelf_dep = dependency(
   'libelf',
   required: true,
-  static: get_option('prefer_static_deps'),
+  static: want_static,
 )
 
 pkgconf = import('pkgconfig')
