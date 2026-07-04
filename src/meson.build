@@ -13,6 +13,7 @@ librevdep = library(
   ],
   include_directories: [public_inc],
   dependencies: [libelf_dep],
+  pie: not want_static,
   install: true,
   version: meson.project_version(),
   soversion: '5',
