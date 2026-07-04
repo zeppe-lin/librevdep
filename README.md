@@ -194,11 +194,27 @@ Common options:
 ```sh
 meson setup build \
     --prefix=/usr \
-    -D b_lto=false \
+    --wrap-mode=nodownload \
     -D manpages=true \
 ```
 
 Use `meson configure build` to inspect available options.
+
+Link Mode
+---------
+
+The build system supports controlling how external dependencies are
+linked.
+
+- `default_library` controls whether `librevdep` itself is built as a
+  static library, shared library, or both.
+- `link_mode` controls whether dependencies are linked dynamically or
+  statically.
+
+`link_mode=static` requires `default_library=static`.
+
+Shared library builds cannot reliably link against non-PIC static
+dependencies.
 
 ---
 
