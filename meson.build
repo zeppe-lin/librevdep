@@ -14,11 +14,10 @@ project(
 want_static = get_option('link_mode') == 'static'
 
 if want_static and get_option('default_library') == 'both'
-  error(
-    'link_mode=static is incompatible with default_library=both. ' +
-    'Building a shared library requires shared (or PIC) dependencies. ' +
-    'Use -Ddefault_library=static or -Ddefault_library=shared.'
-  )
+  error('''
+Invalid configuration: link_mode=static requires default_library=static.
+See project README: Link Mode.
+''')
 endif
 
 libelf_dep = dependency(
