@@ -1,6 +1,11 @@
 OVERVIEW
 ========
 
+> **Maintenance status:** This repository retains the `revdep`/`librevdep` 1.x
+> line for compatibility and maintenance. New semantic, API, resolver, and
+> performance development has moved to
+> [`zeppe-lin/libpkgimpact`](https://github.com/zeppe-lin/libpkgimpact).
+
 `librevdep` is a reusable C++17 library for auditing installed ELF
 objects and reporting unresolved shared-library dependencies.
 
